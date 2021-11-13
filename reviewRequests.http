@@ -1,0 +1,34 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzJhYTMyZjkwYjA0NzA0OWY3NWZiZCIsImlhdCI6MTYzNDkwNDg3MywiZXhwIjoxNjM1MTY0MDczfQ.JsDfjyrBLSSgCldGxrjO49rvfvt3yoJrlUM2ES2QZwY
+@userID = 6172aa32f90b047049f75fbd
+
+@tourID = 6172a991fbde282c29f00b22
+@reviewID = 616897614fb78818523dafb0
+
+### GET ALL REVIEWS
+GET {{hostReviews}}
+Authorization: Bearer {{token}}
+
+### GET REVIEW BY TOUR-ID
+GET {{hostTour}}/{{tourID}}/reviews
+
+### CREATE REVIEW
+POST {{hostTour}}/{{tourID}}/reviews/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "review": "Wallah Habibi",
+    "rating": 5
+}
+
+### UPDATE REVIEW
+PATCH {{hostReviews}}/{{reviewID}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "review": "Soniya"
+}
+
+### DELETE REVIEW 
+DELETE {{hostReviews}}/{{reviewID}}

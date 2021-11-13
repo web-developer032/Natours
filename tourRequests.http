@@ -1,0 +1,112 @@
+# query variables
+@gte = [gte]
+@gt = [gt]
+@lt = [lt]
+@lte = [lte]
+@page = page=2
+@limit = limit=6
+
+@difficulty = difficulty=easy
+@duration = duration{{gte}}=7
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODU4NmZhNDcyYTVkY2JlZTg5ODYzZSIsImlhdCI6MTYzNjM4Nzc5NCwiZXhwIjoxNjM2NjQ2OTk0fQ.5EWnJfJTu6SVpMht6nH_lgEVhG1-GlqqLgNuJo2H3bM
+@userID = 6172aa32f90b047049f75fbd
+@tourID = 6172a991fbde282c29f00b22
+
+### ----> Tour Routes
+
+# GET ALL TOURS
+GET {{hostTour}}
+
+
+### get tour by id
+GET {{hostTour}}/{{tourID}}
+
+
+### ----> Tour Routes by name
+# GET {{hostTour}}?name=The Sea Explorer
+GET {{hostTour}}?sort=-price,-ratingsAverage&fields=name,duration,difficulty,ratingsAverage,price&limit=3&duration[gte]=7
+Authorization: Bearer {{token}}
+
+
+### ----> Tour Routes by limiting etc
+# GET {{hostTour}}?{{page}}&{{limit}}
+GET {{hostTour}}?{{duration}}
+Authorization: Bearer {{token}}
+
+
+### ----> Top 5 Tours
+GET {{hostTour}}/top-5-cheap
+
+
+### ----> Tour Stats
+GET {{hostTour}}/tour-stats
+
+
+### ----> Tour Within Some distance
+GET {{hostTour}}/tours-within/233/center/34.11,-118/unit/mi
+
+
+### ----> Tours Distance from a point
+GET {{hostTour}}/distances/34.11,-118/unit/mi
+
+
+### ----> Monthly plan
+GET {{hostTour}}/monthly-plan/2021
+
+
+### create tour
+POST {{hostTour}}
+Authorization: Bearer {{token}} 
+#without quotes
+Content-Type: application/json 
+
+{
+    "name": "Dummy Tour",
+    "description": "dummy description",
+    "summary": "Exploring the jaw-dropping US east coast by foot and by boat",
+    "images": ["tour-2-1.jpg", "tour-2-2.jpg", "tour-2-3.jpg"],
+    "startDates": ["2021-06-19T09:00:00.000Z","2021-07-20T09:00:00.000Z", "2021-08-18T09:00:00.000Z"],
+    "duration": 7,
+    "maxGroupSize": 15,
+    "difficulty": "easy",
+    "price": 497,
+    "imageCover": "tour-2-cover.jpg"
+}
+
+
+
+### update tour by id
+PATCH {{hostTour}}/{{tourID}}
+Content-Type: application/json 
+
+{
+    "name": "Updated DUmmy Name",
+    "description": "Updated DUmmy Description",
+    "duration": 8
+}
+
+
+### delete tour by id
+DELETE {{hostTour}}/{{tourID}}
+Authorization: Bearer {{token}}
+
+
+# ------------------------------------
+# ------------------------------------
+### NESTED REVIEW ROUTE
+POST {{hostTour}}/{{tourID}}/reviews
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "review": "Latest Review",
+    "rating": 4.7
+}
+
+
+# ---------------------
+### BOOKING TOUR
+# ---------------------
+GET http://localhost:3000/api/v1/bookings/checkout-session/5c88fa8cf4afda39709c295a
+Authorization: Bearer {{token}}

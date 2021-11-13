@@ -1,0 +1,88 @@
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODU4NmZhNDcyYTVkY2JlZTg5ODYzZSIsImlhdCI6MTYzNjM4Nzc5NCwiZXhwIjoxNjM2NjQ2OTk0fQ.5EWnJfJTu6SVpMht6nH_lgEVhG1-GlqqLgNuJo2H3bM
+@userID = 616e22a0adcd1e9bf032eb86
+
+#----> User Routes
+### GET ALL USERS
+GET {{hostUser}}
+Authorization: Bearer {{token}}
+
+### LOGIN USER
+POST {{hostUser}}/login
+Content-Type: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "test1234"
+}
+
+### SIGNUP USER
+POST {{hostUser}}/signup
+Content-Type: application/json
+
+{
+    "name": "Anything",
+    "email": "anything@mailsac.com",
+    "password": "test1234",
+    "confirmPassword": "test1234",
+    "role": "user"
+}
+
+### FORGOT PASSWORD
+POST {{hostUser}}/forgotPassword
+Content-Type: application/json
+
+{
+    "email" : "test1@gmail.com"
+}
+
+### RESET PASSWORD
+PATCH {{hostUser}}/resetPassword/da733eb7043e7956c064381ef563752329d24746380a4c1ae63a52476ca280ed
+Content-Type: application/json
+
+{
+    "password" : "changedPassword",
+    "confirmPassword" : "changedPassword"
+}
+
+### UPDATE PASSWORD
+PATCH {{hostUser}}/updatePassword
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
+    "currentPassword" : "changedPassword",
+    "newPassword" : "updatedPassword",
+    "confirmNewPassword" : "updatedPassword"
+}
+
+
+### GET ME
+GET {{hostUser}}/me
+
+### UPDATE ME
+PATCH {{hostUser}}/updateMe
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
+    "name": "admin updated"
+}
+
+### DELETE ME
+DELETE {{hostUser}}/deleteMe
+Authorization: Bearer {{token}}
+
+
+Authorization: Bearer {{token}}
+
+### GET USER BY ID
+GET {{hostUser}}/61504518afae40a1d49a6ced
+
+### UPDATE USER BY ID
+PATCH {{hostUser}}/2
+
+### DELETE USER BY ID
+DELETE {{hostUser}}/2

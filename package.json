@@ -1,0 +1,47 @@
+{
+  "name": "Natours-Backend_v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "start:prod": "SET NODE_ENV=PRODUCTION& nodemon server.js",
+    "debug": "ndb server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.3.0",
+    "firebase-admin": "^10.0.0",
+    "firebase-functions": "^3.16.0",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "html-to-text": "^8.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "ndb": "^1.1.5",
+    "nodemailer": "^6.6.5",
+    "pug": "^3.0.2",
+    "sharp": "^0.29.2",
+    "slugify": "^1.6.0",
+    "stripe": "^8.186.1",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
