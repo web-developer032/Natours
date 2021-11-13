@@ -51,6 +51,10 @@ const sendDevErr = (err, req, res) => {
 
 // CLIENT DON'T NEED MUCH INFO. SO SEND SIMPLE INFO ABOUT ERROR
 const sendProdErr = (err, req, res) => {
+  // UNKOWN OR PROGRAMMING ERROR THAT WE DON'T KNOW (THIRD PARTY ERROR)
+  // 1) Log Error
+  console.error("Error 🤦‍♂️", err);
+
   // OPERATION ERROR (ERRORS GENERATE BY US)
   if (req.originalUrl.startsWith("/api")) {
     if (err.isOperational) {
@@ -59,9 +63,6 @@ const sendProdErr = (err, req, res) => {
         message: err.message,
       });
     }
-    // UNKOWN OR PROGRAMMING ERROR THAT WE DON'T KNOW (THIRD PARTY ERROR)
-    // 1) Log Error
-    console.error("Error 🤦‍♂️", err);
 
     // 2) Send Simple Message
     return res.status(500).json({
@@ -75,10 +76,6 @@ const sendProdErr = (err, req, res) => {
       msg: err.message,
     });
   }
-  // UNKOWN OR PROGRAMMING ERROR THAT WE DON'T KNOW (THIRD PARTY ERROR)
-
-  // 1) Log Error
-  console.error("Error 🤦‍♂️", err);
 
   // 2) Send Simple Message
   return res.status(500).render("error", {

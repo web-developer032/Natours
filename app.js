@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 
 // PACKAGES FOR SECURITY
 const rateLimit = require("express-rate-limit");
@@ -67,6 +68,9 @@ app.use(
     ], // TELL WHICH PARAMETER WE ARE ALLOWING TO DUPLICATE
   })
 );
+
+// USE THIS MIDDLEWARE TO COMPRESS TEXT RESPONSE THAT WE SENT TO CLIENTS
+app.use(compression());
 
 app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
