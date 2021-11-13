@@ -38,8 +38,6 @@ if (formSignup) {
         },
       });
 
-      console.log(res);
-
       if (res.data.status == "Success") {
         showAlert("success", "Signed Up Successfully");
         setTimeout(() => {
@@ -47,8 +45,6 @@ if (formSignup) {
         }, 1500);
       }
     } catch (err) {
-      console.dir(err);
-
       showAlert("error", err.response.data.message);
     }
     btn.textContent = "Signup";

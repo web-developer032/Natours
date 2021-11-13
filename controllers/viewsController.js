@@ -55,7 +55,6 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
 
   const tours = await Tour.find({ _id: { $in: tourIDs } });
 
-  console.log(tours);
   res.render("overview", {
     title: "My Tours",
     tours,

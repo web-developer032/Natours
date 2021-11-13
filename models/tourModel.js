@@ -198,21 +198,21 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (doc, next) {
-  console.log(`Query took ${(Date.now() - this.start) / 1000} seconds `);
-  next();
-});
+// tourSchema.post(/^find/, function (doc, next) {
+//   console.log(`Query took ${(Date.now() - this.start) / 1000} seconds `);
+//   next();
+// });
 
 // -------------------------
 // AGGREGATION MIDDLEWARE:
 // -------------------------
-tourSchema.pre("aggregate", function (next) {
-  // we don't want to match secret tour
-  // this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+// tourSchema.pre("aggregate", function (next) {
+//   // we don't want to match secret tour
+//   // this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
 
-  console.log(this.pipeline());
-  next();
-});
+//   console.log(this.pipeline());
+//   next();
+// });
 
 const Tour = mongoose.model("Tour", tourSchema);
 

@@ -75,8 +75,6 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
     ratingsAverage: stats[0].avgRating,
     ratingsQuantity: stats[0].nRating,
   });
-
-  console.log(stats);
 };
 
 reviewSchema.post("save", function () {
