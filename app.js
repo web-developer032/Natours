@@ -20,6 +20,9 @@ const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
+
+app.enable("trust proxy");
+
 // GLOBAL MIDDLEWARE: SECURITY HTTP HEADER
 // USE HELMET IN THE START OF MIDDLEWARES i.e AS A FIRST MIDDLEWARE
 app.use(

@@ -37,12 +37,19 @@ const server = app.listen(port, () => {
 
 // SOLVING UNHANDLED REJECTION (catch promise rejections etc)
 process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLED REJECTION. Shutting Down! 🤦‍♂️");
+  console.log("🤷‍♂️ UNHANDLED REJECTION. Shutting Down! 🤦‍♂️");
   console.log(err.name, err.message);
   console.log(err);
   server.close(() => {
     // 0 for success
     // 1 for uncaught exception
     process.exit(1);
+  });
+});
+
+process.on("SIGTERM", () => {
+  console.log("👌 SIGTERM RECIEVED. Shutting Down! 🤦‍♂️");
+  server.close(() => {
+    console.log("💥🔥 Process terminated.");
   });
 });
