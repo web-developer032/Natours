@@ -19,6 +19,7 @@ const bookingRouter = require("./routes/bookingRoutes");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+const bookingController = require("./controllers/bookingController");
 
 const app = express();
 
@@ -53,6 +54,13 @@ const limiter = rateLimit({
     "Too many requests detected from your IP! Please try again after one hour.",
 });
 app.use("/api/", limiter);
+
+// WE ARE USING THIS ROUTE HERE BECAUSE WE WANT TO READ BODY IN A RAW FORM NOT IN JSON
+app.use(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  bookingController.webhookCheckout
+);
 
 // BODYPARSER, READING DATA FROM FRONTEND AND PUTTING IT INTO req.body
 app.use(express.json({ limit: "10kb" })); // to use data that is sent by user from front-end. limit the data to 10kb that user can sent.
