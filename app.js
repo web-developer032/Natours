@@ -56,7 +56,7 @@ const limiter = rateLimit({
 app.use("/api/", limiter);
 
 // WE ARE USING THIS ROUTE HERE BECAUSE WE WANT TO READ BODY IN A RAW FORM NOT IN JSON
-app.use(
+app.post(
   "/webhook-checkout",
   express.raw({ type: "application/json" }),
   bookingController.webhookCheckout
