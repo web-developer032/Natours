@@ -66,7 +66,6 @@ const createBookingCheckout = async (session) => {
 
 exports.webhookCheckout = (req, res, next) => {
   let event;
-  console.log(req.headers);
   try {
     // FIRST READ SIGNATURE
     const signature = req.headers["stripe-signature"];
@@ -79,8 +78,9 @@ exports.webhookCheckout = (req, res, next) => {
   } catch (err) {
     return res.status(400).send(`WEBHOOK error: ${err.message}`);
   }
-  if (event.type === "checkout.session.compeleted")
+  if (event.type === "checkout.session.completed") {
     createBookingCheckout(event.data.object);
+  }
 
   return res.json({ received: true });
 };
