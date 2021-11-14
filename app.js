@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require("cors");
 
 // PACKAGES FOR SECURITY
 const rateLimit = require("express-rate-limit");
@@ -20,6 +21,12 @@ const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
 const app = express();
+
+// IMPLEMENTING CORS SO THAT OTHER WEBSITES CAN USE OUR API
+app.use(cors()); // THIS WILL WORK FOR SIMPLE REQUESTS LIKE (GET AND POST) BUT NOT FOR (PATCH, DELETE or PUT). or for cookies
+
+// FOR NON-SIMPLE REQUEST WE USE app.options request.
+app.options("*", cors()); // app.options() is just like app.get or post etc.
 
 app.enable("trust proxy");
 
