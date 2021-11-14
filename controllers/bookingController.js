@@ -69,7 +69,7 @@ exports.webhookCheckout = (req, res, next) => {
   console.log(req.headers);
   try {
     // FIRST READ SIGNATURE
-    const signature = req.headers["Stripe-signature"];
+    const signature = req.headers["stripe-signature"];
 
     event = stripe.webhooks.constructEvent(
       req.body,
@@ -77,12 +77,12 @@ exports.webhookCheckout = (req, res, next) => {
       process.env.STRIPE_WEBHOOK_SECRET
     ); // req.body needs to be in raw form
   } catch (err) {
-    res.status(400).send(`WEBHOOK error: ${err.message}`);
+    return res.status(400).send(`WEBHOOK error: ${err.message}`);
   }
   if (event.type === "checkout.session.compeleted")
     createBookingCheckout(event.data.object);
 
-  res.json({ received: true });
+  return res.json({ received: true });
 };
 
 exports.createBooking = factory.createOne(Booking);
