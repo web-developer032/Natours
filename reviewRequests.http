@@ -10,6 +10,7 @@ Authorization: Bearer {{token}}
 
 ### GET REVIEW BY TOUR-ID
 GET {{hostTour}}/{{tourID}}/reviews
+Authorization: Bearer {{token}}
 
 ### CREATE REVIEW
 POST {{hostTour}}/{{tourID}}/reviews/

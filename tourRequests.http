@@ -1,3 +1,5 @@
+
+
 # query variables
 @gte = [gte]
 @gt = [gt]
@@ -12,6 +14,8 @@
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODU4NmZhNDcyYTVkY2JlZTg5ODYzZSIsImlhdCI6MTYzNjM4Nzc5NCwiZXhwIjoxNjM2NjQ2OTk0fQ.5EWnJfJTu6SVpMht6nH_lgEVhG1-GlqqLgNuJo2H3bM
 @userID = 6172aa32f90b047049f75fbd
 @tourID = 6172a991fbde282c29f00b22
+
+@hostTour = https://natours-mubasher.herokuapp.com/
 
 ### ----> Tour Routes
 
@@ -60,7 +64,7 @@ POST {{hostTour}}
 Authorization: Bearer {{token}} 
 #without quotes
 Content-Type: application/json 
-
+    
 {
     "name": "Dummy Tour",
     "description": "dummy description",

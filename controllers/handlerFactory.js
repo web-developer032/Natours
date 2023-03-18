@@ -10,7 +10,7 @@ exports.deleteOne = (Model) =>
       return next(new AppError("No Document found with the specific ID. "));
 
     res.status(204).json({
-      statsu: "Success",
+      status: "Success",
       data: null,
     });
   });

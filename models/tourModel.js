@@ -126,6 +126,7 @@ const tourSchema = new mongoose.Schema(
     ],
 
     // guides: Array, // FOR EMBEDING DOCUMENTS
+    // ['ADHAHDjkhJADHkjahdkajhskkajhskd', 'ASDasdASDasdadadASDASD']
 
     // FOR DOCUMENT REFRENCING
     guides: [
